@@ -41,6 +41,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 return Blade::render('<div style="text-align: center;">Powered by <strong>Noel Munyengwa</strong></div>');
             }
         );
+        Nova::showUnreadCountInNotificationCenter();
 
         //Customizing the Main Menu 
         Nova::mainMenu(
