@@ -9,6 +9,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Resource;
 use App\Nova\Actions;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
+
 
 
 
@@ -70,7 +73,7 @@ class Timetable extends Resource
                 Text::make('Course Code')
                 ->rules(['required']),
 
-            Text::make( 'Room')
+            Text::make( 'Venue')
                 ->rules(['required']),
 
             Text::make('Time')
@@ -83,7 +86,7 @@ class Timetable extends Resource
                     'wednesday' => 'Wednesday',
                     'thursday' => 'Thursday',
                     'friday' => 'Friday',
-                ])->hideOnCreate(),
+                ])->hideWhenCreating(),
 
             Text::make('Duration')
                 ->rules(['required', 'regex:/^\d+ (minutes|hours)$/i']),
@@ -91,19 +94,14 @@ class Timetable extends Resource
                 Text::make('Lecturer')
                 ->rules(['required']),
 
-            Select::make('isCampusWide')
-                ->options([
-                    0 => 'No',
-                    1 => 'Yes',
-                ])
-                ->default(0),
-
-            Select::make('isRepeated')
-                ->options([
-                    0 => 'No',
-                    1 => 'Yes',
-                ])
-                ->default(0),
+                Boolean::make('Is Compass Wide','isCampusWide')->sortable()
+                ->trueValue('On')
+                ->falseValue('Off')->default(0),
+                        // isRepeated,
+                        Boolean::make('Is Repeated','isRepeated')->sortable()
+                ->trueValue('On')
+                ->falseValue('Off')->default(0),
+                        DateTime::make('Created At')->onlyOnDetail(),
         ];
     }
 

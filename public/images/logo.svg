@@ -1,10 +1,11 @@
-<?xml version="1.0" standalone="no"?>
+<!-- <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"> -->
 <svg width="50" height="30" viewBox="0 0 50 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="50" height="30" fill="#F2F2F2"/>
-  <text x="15" y="22" fill="#333333" font-size="24" font-family="sans-serif">UZ</text>
+    <rect width="50" height="30" fill="#F2F2F2"/>
+    <text x="15" y="22" fill="gold" font-size="24" font-family="sans-serif">UZ</text>
 </svg>
+
  <!-- 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="204.000000pt" height="201.000000pt" viewBox="0 0 204.000000 201.000000"
