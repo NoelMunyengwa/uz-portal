@@ -37,7 +37,7 @@ class Timetable extends Resource
      * @var array
      */
     public static $search = [
-        'Department','Level','course_code','room','Time','Day','Duration','Lecturer',
+        'Department','Level','course_code','venue','time','day','duration','lecturer',
     ];
 
     /**
