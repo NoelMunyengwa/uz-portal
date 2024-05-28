@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('day');
             $table->integer('duration');
             $table->string('lecturer');
-            $table->string('isCampusWide')->default('No');
-            $table->string('isRepeated')->default('No');
+            $table->string('isCampusWide')->default('Off');
+            $table->string('isRepeated')->default('Off');
             $table->timestamps();
         });
     }

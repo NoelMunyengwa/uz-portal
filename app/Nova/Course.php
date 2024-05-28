@@ -33,7 +33,7 @@ class Course extends Resource
      *
      * @var string
      */
-    public static $title = 'course_title';
+    public static $title = 'course_code';
 
     /**
      * The columns that should be searched.
@@ -41,7 +41,7 @@ class Course extends Resource
      * @var array
      */
     public static $search = [
-        'department','semester','year','course_code','course_title','lecturer','day','time','venue',
+        'department','semester','year','course_code','course_title','lecturer','isCampusWide','duration',
     ];
 
     /**
