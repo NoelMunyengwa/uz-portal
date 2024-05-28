@@ -9,6 +9,15 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Notifications\NovaNotification;
+use App\Models\User;
+use App\Models\Timetable;
+use Laravel\Nova\URL;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class PublishTimetable extends Action
 {
@@ -21,9 +30,24 @@ class PublishTimetable extends Action
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
-    public function handle(ActionFields $fields, Collection $models)
+    public function handle(ActionFields $fields,  Collection $models)
     {
-        //
+        //Notifying all users with role == 'admin' that the timetable has been published
+        $pdf = Pdf::loadView('pdf.timetable', ['models' => $models]);
+        $filename = 'Lecture Timetable_' . time() . '.pdf';
+        Storage::put('pdfs/' . $filename, $pdf->stream());
+        $url = route('download.pdf', ['filename' => $filename]);
+        $users = User::all();
+        foreach ($users as $user) {
+            if ($user->role === 'student' || $user->role === 'user' || $user->role === 'admin') {//filter by user programm
+                $user->notify(NovaNotification::make()
+                ->message('Timetable was published!')
+                ->action('Download', URL::remote($url))
+                ->openInNewTab()
+                ->icon('download')
+                ->type('info'));
+            }
+        }
     }
     //New name
     public function name()
