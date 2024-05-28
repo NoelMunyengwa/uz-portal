@@ -22,7 +22,7 @@ class CourseObserver
         foreach ($users as $user) {
             if ( $user->role === 'admin') {
                 $user->notify(NovaNotification::make()
-                ->message('Your Course '.$course->course_code.' is now available and  ready to download.')
+                ->message('Your Course '.$course->course_code.' is now available ')
                 // ->action('Download', URL::remote('https://stackoverflow.com/questions/54234808/laravel-5-4-shouldqueue-not-sending-email'))
                 // ->openInNewTab()
                 ->icon('download')

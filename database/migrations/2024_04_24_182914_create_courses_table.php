@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('department');
-            $table->string('semester');
+            $table->string('level');
             $table->string('year');
             $table->string('course_code');
             $table->string('course_title');
@@ -30,8 +30,9 @@ return new class extends Migration
         //default courses
         DB::table('courses')->insert([
             [
+                
                 'department' => 'Business Studies and Economics',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'POP 999',
                 'course_title' => 'Introduction to Business Studies',
@@ -42,7 +43,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'CSC 102',
                 'course_title' => 'Introduction to Programming',
@@ -53,7 +54,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'CSC 103',
                 'course_title' => 'Introduction to Web Development',
@@ -64,7 +65,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'CSC 104',
                 'course_title' => ' Database Management',
@@ -73,9 +74,10 @@ return new class extends Migration
                 'isCampusWide' => 'Off',
                 'isRepeated' => 'Off',
             ],
+            
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'HCT 404',
                 'course_title' => ' Networking',
@@ -86,7 +88,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'CSC 106',
                 'course_title' => 'Introduction to Cyber Security',
@@ -97,7 +99,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '4.2',
                 'year' => '2024',
                 'course_code' => 'CSC 107',
                 'course_title' => 'Introduction to Artificial Intelligence',
@@ -108,7 +110,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '2.2',
                 'year' => '2024',
                 'course_code' => 'CSC 108',
                 'course_title' => ' Data Science',
@@ -119,7 +121,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '2.2',
                 'year' => '2024',
                 'course_code' => 'HCT 402',
                 'course_title' => 'Software Engineering',
@@ -130,7 +132,7 @@ return new class extends Migration
             ],
             [
                 'department' => 'Computer Science',
-                'semester' => '1',
+                'level' => '2.2',
                 'year' => '2024',
                 'course_code' => 'HCS 222',
                 'course_title' => 'JAVA Programming',
@@ -139,6 +141,62 @@ return new class extends Migration
                 'isCampusWide' => 'Off',
                 'isRepeated' => 'Off',
             ],
+            [
+                'department' => 'Computer Science',
+                'level' => '2.2',
+                'year' => '2024',
+                'course_code' => 'HCT 112',
+                'course_title' => ' Computer Graphics',
+                'lecturer' => 'Mr Kavu',
+                'duration' => '2',
+                'isCampusWide' => 'On',
+                'isRepeated' => 'Off',
+            ],
+            [
+                'department' => 'Computer Science',
+                'level' => '2.2',
+                'year' => '2024',
+                'course_code' => 'CSC 203',
+                'course_title' => 'Introduction to Operating Systems',
+                'lecturer' => 'Dr. Jane Doe',
+                'duration' => '1',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
+            ],
+            [
+                'department' => 'Computer Science',
+                'level' => '2.2',
+                'year' => '2024',
+                'course_code' => 'CSC 204',
+                'course_title' => ' Internet of Things',
+                'lecturer' => 'Miss Mhlanga',
+                'duration' => '2',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
+            ],
+            [
+                'department' => 'Computer Science',
+                'level' => '2.2',
+                'year' => '2024',
+                'course_code' => 'HCT 204',
+                'course_title' => ' Python Programming',
+                'lecturer' => 'Miss Jowa',
+                'duration' => '2',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
+            ],
+            [
+                'department' => 'Computer Science',
+                'level' => '2.2',
+                'year' => '2024',
+                'course_code' => 'CSC 206',
+                'course_title' => 'Discrete Mathematics',
+                'lecturer' => 'Miss Jowa',
+                'duration' => '1',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
+            ],
+            
             
 
         ]);

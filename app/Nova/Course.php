@@ -41,7 +41,7 @@ class Course extends Resource
      * @var array
      */
     public static $search = [
-        'department','semester','year','course_code','course_title','lecturer','isCampusWide','duration',
+        'department','level','year','course_code','course_title','lecturer','isCampusWide','duration',
     ];
 
     /**
@@ -60,9 +60,15 @@ class Course extends Resource
                 'LW' => ['label' => 'LAW', 'group' => 'FACULTY OF LAW'],
                 'AC' => ['label' => 'ACCOUNTING', 'group' => 'FACULTY OF MANAGEMENT SCIENCES'],
             ])->displayUsingLabels(),
-            Select::make('semester')->searchable()->options([
-                '1' => 'FIRST SEMESTER',
-                '2' => 'SECOND SEMESTER',
+            Select::make('level')->searchable()->options([
+                '1.1' => '1.1',
+                '1.2' => '1.2',
+                '2.1' => '2.1',
+                '2.2' => '2.2',
+                '3.1' => '3.1',
+                '3.2' => '3.2',
+                '4.1' => '4.1',
+                '4.2' => '4.2',
                 
             ])->displayUsingLabels(),
             Text::make('Year')->sortable()->default(date('Y')),

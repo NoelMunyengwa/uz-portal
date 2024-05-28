@@ -54,6 +54,8 @@ class Course extends Action
                     'courses' => $model->course_code,
                     'durations' => $model->duration,
                     'lecturers' => $model->lecturer,
+                    'departments' => $model->department,
+                    'levels' => $model->level,
                     // 'name' => $model->name, // Replace with the appropriate field name
                     // 'duration' => $model->duration, // Replace with the appropriate field name
                 ];

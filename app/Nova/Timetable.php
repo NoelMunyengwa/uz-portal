@@ -15,6 +15,7 @@ use Laravel\Nova\Fields\DateTime;
 
 
 
+
 class Timetable extends Resource
 {
     /**
@@ -146,6 +147,10 @@ class Timetable extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            ( new Actions\PublishTimetable)->canSee(function ($request){
+                return $request->user()->role == 'admin';
+               }),
+        ];
     }
 }
