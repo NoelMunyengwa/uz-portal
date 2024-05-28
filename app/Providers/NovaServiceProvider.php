@@ -24,6 +24,7 @@ use App\Nova\Invoice;
 use App\Nova\Quotation;
 use App\Nova\EcocashPayment;
 use App\Nova\PaynowPayment;
+use App\Nova\Timetable;
 
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -65,7 +66,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(Registration::class),
                         // MenuItem::resource(Results::class),
                         MenuItem::resource(RegistrationHistory::class),
-                        // MenuItem::resource(RegistrationStatus::class),
+                        MenuItem::resource(Timetable::class),
                     ])->icon('book-open')->collapsable(),
 
                     MenuSection::make('Exams & Results', [

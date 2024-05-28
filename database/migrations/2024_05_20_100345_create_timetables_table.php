@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('timetables', function (Blueprint $table) {
             $table->id();
-            $table->string('department');
-            $table->string('semester');
-            $table->string('year');
+            $table->string('department')->default('CS');
+            $table->string('level')->default('1.1');
             $table->string('course_code');
-            $table->string('course_title');
-            $table->string('lecturer');
-            $table->string('day');
+            $table->string('venue');
             $table->string('time');
-            $table->string('venue');    
+            $table->string('day');
+            $table->integer('duration');
+            $table->string('lecturer');
+            $table->string('isCampusWide')->default('No');
+            $table->string('isRepeated')->default('No');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('timetables');
     }
 };

@@ -1,6 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="50" height="30" viewBox="0 0 50 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="50" height="30" fill="#F2F2F2"/>
+  <text x="15" y="22" fill="#333333" font-size="24" font-family="sans-serif">UZ</text>
+</svg>
+ <!-- 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="204.000000pt" height="201.000000pt" viewBox="0 0 204.000000 201.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -213,4 +218,4 @@ l-22 4 20 26 c27 34 25 43 -7 42 -22 0 -24 -2 -10 -8z"/>
 0 20 5 20 10 0 6 -10 10 -22 10 -25 0 -14 15 17 23 13 3 9 5 -12 6 -32 1 -33
 0 -33 -39z"/>
 </g>
-</svg>
+</svg> -->

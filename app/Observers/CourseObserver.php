@@ -20,7 +20,7 @@ class CourseObserver
     {
         $users = User::all();
         foreach ($users as $user) {
-            if ($user->role === 'student' || $user->role === 'user') {
+            if ( $user->role === 'admin') {
                 $user->notify(NovaNotification::make()
                 ->message('Your Course '.$course->course_code.' is now available and  ready to download.')
                 // ->action('Download', URL::remote('https://stackoverflow.com/questions/54234808/laravel-5-4-shouldqueue-not-sending-email'))
@@ -36,7 +36,17 @@ class CourseObserver
      */
     public function updated(Course $course): void
     {
-        //
+        $users = User::all();
+        foreach ($users as $user) {
+            if ($user->role === 'student' || $user->role === 'user' || $user->role === 'admin') {//filter by user programm
+                $user->notify(NovaNotification::make()
+                ->message('Your Course '.$course->course_code.' was updated!')
+                // ->action('Download', URL::remote('https://stackoverflow.com/questions/54234808/laravel-5-4-shouldqueue-not-sending-email'))
+                // ->openInNewTab()
+                ->icon('information-circle')
+                ->type('warning'));
+            }
+        }
     }
 
     /**

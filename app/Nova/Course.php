@@ -10,6 +10,9 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Resource;
 use App\Nova\Actions;
+use Laravel\Nova\Fields\Boolean;
+use App\Nova\Metrics;
+
 
 class Course extends Resource
 {
@@ -30,7 +33,7 @@ class Course extends Resource
      *
      * @var string
      */
-    public static $title = 'department';
+    public static $title = 'course_title';
 
     /**
      * The columns that should be searched.
@@ -62,23 +65,26 @@ class Course extends Resource
                 '2' => 'SECOND SEMESTER',
                 
             ])->displayUsingLabels(),
-            Text::make('Year')->sortable(),
+            Text::make('Year')->sortable()->default(date('Y')),
             Text::make('Course Code')->sortable(),
             Text::make('Course Title')->sortable(),
             Text::make('Lecturer')->sortable(),
-            Text::make('Day')->sortable(),
-            Text::make('Time')->sortable(),
-            Select::make('venue')->searchable()->options([
-                'ONLINE' => 'ONLINE',
-                'SOFTWARE LAB' => 'SOFTWARE LAB',
-                'HARDWARE LAB' => 'HARDWARE LAB',
-                'SEMINAR ROOM' => 'SEMINAR ROOM',
-                'SLT500' => 'SLT500',
-                'LEWELYN' => 'LEWELYN',
-                'AUDITORIUM' => 'AUDITORIUM',
-                'MATHS LAB' => 'MATHS LAB',
+            // Text::make('Day')->hideWhenCreating(),
+            Select::make('Duration')->searchable()->options([
+                '1' => '1 hour',
+                '2' => '2 hours',
+                '3' => '3 hours',
+                '4' => '4 hours',
                 
             ])->displayUsingLabels(),
+            
+            Boolean::make('Is Compass Wide','isCampusWide')->sortable()
+    ->trueValue('On')
+    ->falseValue('Off')->default(0),
+            // isRepeated,
+            Boolean::make('Is Repeated','isRepeated')->sortable()
+    ->trueValue('On')
+    ->falseValue('Off')->default(0),
             DateTime::make('Created At')->onlyOnDetail(),
         ];
     }
@@ -141,7 +147,7 @@ class Course extends Resource
      */
     public static function label()
     {
-        return 'Courses & Timetable';
+        return 'Courses ';
     }
 
 

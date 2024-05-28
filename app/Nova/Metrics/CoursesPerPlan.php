@@ -9,6 +9,9 @@ use App\Models\Course;
 class CoursesPerPlan extends Partition
 {
 
+    // Set the name of the metric
+    public $name = 'Current Courses';
+
     /**
      * Calculate the value of the metric.
      *

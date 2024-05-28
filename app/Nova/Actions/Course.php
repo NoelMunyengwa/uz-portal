@@ -11,6 +11,10 @@ use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Actions\ActionResponse;
 use Illuminate\Support\Facades\Http;
+use Laravel\Nova\Fields\ActionField;
+use Laravel\Nova\Fields\Text;
+use App\Models\Timetable;
+
 
 // use Illuminate\Foundation\Actions\Dispatchable;
 
@@ -42,18 +46,13 @@ class Course extends Action
 
     public function handle(ActionFields $fields, Collection $models)
     {
-        // foreach ($models as $model) {
-        //     // Implement logic to send data to the API (optional)
-        //     $dummy = Http::get('http://127.0.0.1:5000/get_data');
-        //     return ActionResponse::message('It worked!');
-        // }
-        // $dummy = Http::get('http://127.0.0.1:5000/get_data');
+        
         $postData = collect($models) // Assuming you want to send data for all selected resources
             ->map(function ($model) {
                 return [
                     
                     'courses' => $model->course_code,
-                    'durations' => $model->time,
+                    'durations' => $model->duration,
                     'lecturers' => $model->lecturer,
                     // 'name' => $model->name, // Replace with the appropriate field name
                     // 'duration' => $model->duration, // Replace with the appropriate field name
@@ -63,7 +62,7 @@ class Course extends Action
 
         $response = $this->sendToAPI($postData);
 
-        if ($response->successful()) {
+        if ($response->successful()) {          
             return Action::message('Timetable created successfully!');
         } else {
             return Action::message('Something went wrong!');
@@ -91,10 +90,7 @@ class Course extends Action
      * @param  \Illuminate\Support\Collection  $models
      * @return mixed
      */
-    // public function handle(ActionFields $fields, Collection $models)
-    // {
-    //     //
-    // }
+    
 
     /**
      * Get the fields available on the action.

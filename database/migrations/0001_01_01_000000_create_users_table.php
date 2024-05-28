@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+       
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,6 +22,27 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        $users = [
+            [
+                'name' => 'UZ Admin',
+                'email' => 'admin@gmail.com',
+                'role' => 'admin', // is 'admin'
+                'password' => Hash::make('1234567890'),
+            ],
+            [
+                // Add more default users here
+                'name' => 'Noel Munyengwa',
+                'email' => 'nmunyengwa2019@gmail.com',
+                'role' => 'user', // is 'user'
+                'password' => Hash::make('1234567890'),
+
+            ],
+        ];
+        foreach ($users as $user) {
+            if (!DB::table('users')->where('email', $user['email'])->exists()) {
+                DB::table('users')->insert($user);
+            }
+        }
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
