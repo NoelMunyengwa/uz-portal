@@ -37,6 +37,8 @@ return new class extends Migration
                 'course_title' => 'Introduction to Computer Science',
                 'lecturer' => 'Dr. John Doe',
                 'duration' => '1',
+                'isCampusWide' => 'On',
+                'isRepeated' => 'Off',
             ],
             [
                 'department' => 'Computer Science',
@@ -46,6 +48,8 @@ return new class extends Migration
                 'course_title' => 'Introduction to Programming',
                 'lecturer' => 'Dr. Jane Doe',
                 'duration' => '2',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
             ],
             [
                 'department' => 'Computer Science',
@@ -55,6 +59,8 @@ return new class extends Migration
                 'course_title' => 'Introduction to Web Development',
                 'lecturer' => 'Dr. John Doe',
                 'duration' => '1',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
             ],
             [
                 'department' => 'Computer Science',
@@ -64,6 +70,8 @@ return new class extends Migration
                 'course_title' => 'Introduction to Database Management',
                 'lecturer' => 'Dr. Jane Doe',
                 'duration' => '2',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
             ],
             [
                 'department' => 'Computer Science',
@@ -73,6 +81,8 @@ return new class extends Migration
                 'course_title' => 'Introduction to Networking',
                 'lecturer' => 'Dr. John Doe',
                 'duration' => '2',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
             ],
             [
                 'department' => 'Computer Science',
@@ -82,6 +92,8 @@ return new class extends Migration
                 'course_title' => 'Introduction to Cyber Security',
                 'lecturer' => 'Dr. Jane Doe',
                 'duration' => '1',
+                'isCampusWide' => 'Off',
+                'isRepeated' => 'Off',
             ],
 
         ]);
