@@ -38,6 +38,14 @@ return new class extends Migration
                 'password' => Hash::make('1234567890'),
 
             ],
+            [
+                // Add more default users here
+                'name' => 'Miss Jowa',
+                'email' => 'vjowa@gmail.com',
+                'role' => 'lecturer', // is 'user'
+                'password' => Hash::make('1234567890'),
+
+            ]
         ];
         foreach ($users as $user) {
             if (!DB::table('users')->where('email', $user['email'])->exists()) {

@@ -25,6 +25,7 @@ use App\Nova\Quotation;
 use App\Nova\EcocashPayment;
 use App\Nova\PaynowPayment;
 use App\Nova\Timetable;
+use App\Nova\User;
 
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -76,6 +77,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         // MenuItem::resource(ExamRegistrationHistory::class),
                         // MenuItem::resource(ExamRegistrationStatus::class),
                     ])->icon('clipboard-list')->collapsable(),
+                    MenuSection::make('Management', [
+                        MenuItem::resource(User::class),
+                        
+                    ])->icon('person')->collapsable(),
 
                     
 
