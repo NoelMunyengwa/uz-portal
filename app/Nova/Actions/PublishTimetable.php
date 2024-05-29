@@ -37,17 +37,36 @@ class PublishTimetable extends Action
         $filename = 'Lecture Timetable_' . time() . '.pdf';
         Storage::put('pdfs/' . $filename, $pdf->stream());
         $url = route('download.pdf', ['filename' => $filename]);
-        $users = User::all();
-        foreach ($users as $user) {
-            if ($user->role === 'student' || $user->role === 'user' || $user->role === 'admin') {//filter by user programm
-                $user->notify(NovaNotification::make()
-                ->message('Timetable was published!')
-                ->action('Download', URL::remote($url))
-                ->openInNewTab()
-                ->icon('download')
-                ->type('info'));
+        $departments = $models->pluck('department')->unique();
+
+        // Notifying users belonging to each department
+        foreach ($departments as $department) {
+            $users = User::where('department', $department)
+                ->orWhere('role', 'admin') // Add this line to include admin users
+                ->get();
+            foreach ($users as $user) {
+                if ($user->role === 'admin' || $user->department === $department) {
+                    $user->notify(NovaNotification::make()
+                        ->message('Timetable was published for ' . $department)
+                        ->action('Download', URL::remote($url))
+                        ->openInNewTab()
+                        ->icon('download')
+                        ->type('info'));
+                }
             }
         }
+
+        // $users = User::all();
+        // foreach ($users as $user) {
+        //     if ($user->role === 'student' || $user->role === 'user' || $user->role === 'admin') {//filter by user programm
+        //         $user->notify(NovaNotification::make()
+        //         ->message('Timetable was published!')
+        //         ->action('Download', URL::remote($url))
+        //         ->openInNewTab()
+        //         ->icon('download')
+        //         ->type('info'));
+        //     }
+        // }
     }
     //New name
     public function name()
