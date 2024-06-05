@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DepartmentController;
 
 
 Route::get('/user', function (Request $request) {
@@ -32,4 +33,6 @@ Route::put('courses/{id}',[CourseController::class,'update'])
 Route::delete('courses/{id}',[CourseController::class,'destroy'])
     ->middleware('auth:sanctum');
 Route::get('courses/search/{course_code}',[CourseController::class,'search'])    
+    ->middleware('auth:sanctum');
+Route::get('departments',[DepartmentController::class,'index'])  
     ->middleware('auth:sanctum');
