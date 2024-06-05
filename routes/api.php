@@ -9,6 +9,7 @@ use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\TimetableController;
+use App\Models\Course;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -39,4 +40,9 @@ Route::get('departments',[DepartmentController::class,'index'])
 Route::get('timetables',[TimetableController::class,'index'])
     ->middleware('auth:sanctum');
 Route::get('timetables/{department}',[TimetableController::class,'getTimetablesByDepartment'])
+    ->middleware('auth:sanctum');
+Route::post('timetables',[TimetableController::class,'store'])
+    ->middleware('auth:sanctum');
+//generate timetable
+Route::post('timetables/generate',[TimetableController::class,'generateTimetable'])
     ->middleware('auth:sanctum');

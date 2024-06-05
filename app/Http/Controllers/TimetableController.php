@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Timetable;
+use Illuminate\Support\Facades\Http;
+
+use Illuminate\Validation\Rule;
+
 
 class TimetableController extends Controller
 {
@@ -67,4 +71,69 @@ class TimetableController extends Controller
     {
         //
     }
+
+    //Generate timetable
+    public function generateTimetable(Request $request)
+    {
+        
+        try {
+            $data = $request->validate([
+                'courses' => 'required|array',
+                'courses.*' => 'required|array',
+                // 'courses.*.id' => 'required|integer',
+                'courses.*.departments' => 'required|string',
+                'courses.*.levels' => 'required|string',
+                'courses.*.year' => 'required|string',
+                'courses.*.courses' => 'required|string',
+                'courses.*.course_title' => 'required|string',
+                'courses.*.lecturers' => 'required|string',
+                'courses.*.durations' => 'required|string',
+                // 'courses.*.isCampusWide' => 'required|string',
+                // 'courses.*.isRepeated' => 'required|string',
+            ]);
+    
+            $extractedCourses = [];
+            foreach ($data['courses'] as $course) {
+                $extractedCourses[] = [
+                    // 'id' => $course['id'],
+                    'departments' => $course['departments'],
+                    'levels' => $course['levels'],
+                    'year' => $course['year'],
+                    'courses' => $course['courses'], // Assuming this is the actual course code
+                    'course_title' => $course['course_title'],
+                    'lecturers' => $course['lecturers'],
+                    'durations' => $course['durations'],
+                    // 'isCampusWide' => $course['isCampusWide'],
+                    // 'isRepeated' => $course['isRepeated'],
+                ];
+            }
+    
+            $data= $extractedCourses;
+    
+            $response = $this->sendToAPI($data);
+    
+            if ($response->successful()) {
+                return response()->json([
+                    'message' => 'Timetable created successfully!',
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'Something went wrong!',
+                ], $response->status());
+            }
+        }catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+
+        
+    }
+    private function sendToAPI(array $data)
+        {
+            $url = env('LOCAL_ANT_COLONY_URL'); // Get URL from .env file
+            $headers = [
+                'Content-Type' => 'application/json',
+            ];
+    
+            return Http::withHeaders($headers)->post($url, json_encode($data));
+        }
 }
