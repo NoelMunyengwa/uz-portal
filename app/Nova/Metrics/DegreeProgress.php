@@ -16,7 +16,7 @@ class DegreeProgress extends Progress
     public function calculate(NovaRequest $request)
 {
 // Get the student's current level from the users table
-$level = '4.2';
+$level = '4.1';
 // Define the levels and their corresponding progress values
 $levels = [
 '1.1' => 1.25,
