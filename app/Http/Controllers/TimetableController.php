@@ -2,25 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\Timetable;
 
-class CourseController extends Controller
+class TimetableController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        //Get all timetables. use try catch and return a json response
+        try {
+            $timetables = Timetable::all();
+            return response()->json([
+                'timetables' => $timetables
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    //Get all timetables by department. use try catch and return a json response
+    public function getTimetablesByDepartment(string $department)
     {
-        //
+        try {
+            $timetables = Timetable::where('department', $department)->get();
+            return response()->json([
+                'timetables' => $timetables
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 
     /**
@@ -29,26 +42,12 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         //
-        // $response = $client->request('POST', 'http://httpbin.org/post', [
-        //         'field_name' => 'abc',
-        //         'other_field' => '123',
-        //         'nested_field' => ''
-        //     ]
-        // );
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Course $course)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Course $course)
+    public function show(string $id)
     {
         //
     }
@@ -56,7 +55,7 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -64,7 +63,7 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Course $course)
+    public function destroy(string $id)
     {
         //
     }

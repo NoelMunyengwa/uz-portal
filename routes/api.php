@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
-
+use App\Http\Controllers\TimetableController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -35,4 +35,8 @@ Route::delete('courses/{id}',[CourseController::class,'destroy'])
 Route::get('courses/search/{course_code}',[CourseController::class,'search'])    
     ->middleware('auth:sanctum');
 Route::get('departments',[DepartmentController::class,'index'])  
+    ->middleware('auth:sanctum');
+Route::get('timetables',[TimetableController::class,'index'])
+    ->middleware('auth:sanctum');
+Route::get('timetables/{department}',[TimetableController::class,'getTimetablesByDepartment'])
     ->middleware('auth:sanctum');
